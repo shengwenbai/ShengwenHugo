@@ -1,0 +1,24 @@
+---
+layout:     post
+title:      "Prevent a search box from being submitted without entering any text"
+subtitle:   "Test blog"
+date:       2016-08-23 12:00:00
+author:     "Shengwen"
+header-img: "img/post-bg-js-version.jpg"
+tags:
+    - jQuery
+    - JavaScript
+---
+
+Simple code to prevent a search box from being submitted without entering any text.
+Listen to the submit event of the form and stop the event if there is no text in the search box. Create a js file:
+```js
+$(function(){
+    $('#searchForm').submit(function(){
+        if($("#textbox").val().trim())
+            return true;
+        return false;
+    });
+});
+```
+Include this js file and jQurey library in the view.

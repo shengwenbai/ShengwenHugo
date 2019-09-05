@@ -1,0 +1,102 @@
+---
+layout:     post
+title:      "Use AjaxPro in Web Form and prevent timeouts for time-consuming requests"
+subtitle:   ""
+date:       2017-08-19 12:00:00
+author:     "Shengwen"
+header-img: "img/home-bg-o.jpg"
+tags:
+    - C#
+    - ASP.NET
+    - JavaScript
+    
+---
+
+1. Add reference of the AjaxPro.2 dll in project;
+
+2. Add following lines to `<system.webServer>` node in `Web.config`;
+
+3. Add `AjaxNamespace` attribute on the web form class, register the class in `Page_Load` method, add `AjaxMethod` on the method that will be called in front end;
+
+   ```c#
+       [AjaxNamespace("DefaultSpace")]
+       public partial class _Default : Page
+       {
+           protected void Page_Load(object sender, EventArgs e)
+           {
+               Utility.RegisterTypeForAjax(typeof(_Default));
+           }
+   
+           [AjaxMethod]
+           public string SendMsgToFrontEnd()
+           {
+               System.Threading.Thread.Sleep(15000);
+               return "This message comes from the back end.";
+           }
+       }
+   ```
+
+   Here we use `Thread.Sleep` to simulate a time-consuming process that cost 15 seconds, which is longer than the default time out period (10s) of AjaxPro;
+
+4. Create a js file and link it in the web form (Default.aspx in this example), also add a button in HTML. In Default.js set the AjaxPro time out period to be 20s and call the backend method when the button is clicked.
+
+   ```javascript
+   AjaxPro.timeoutPeriod = 20000;
+   $(".btn-primary").click(function () {
+       DefaultSpace.SendMsgToFrontEnd(function (data) {
+           alert(data.value);
+       });
+   });
+   ```
+
+   Now click the button, wait for 15 seconds, the alert will show.
+
+5. When waiting for the response, it's better to show user a loading UI.  Add this element below in HTML:
+
+   ```html
+   <div class="loading" style="display: none;">
+       <span class="loading-gif"></span>
+   </div>
+   ```
+
+   Create a stylesheet (Default.css in this example) and link to it in the webform. You can use any loading gif you like.
+
+   ```css
+   .loading {
+       display: none;
+       position: fixed;
+       width: 100%;
+       height: 100%;
+       top: 0px;
+       left: 0px;
+       background-color: #000;
+       filter: alpha(opacity=40);
+       opacity: 0.4;
+       z-index: 10000;
+   }
+   .loading-gif {
+       display: inline-block;
+       position: fixed;
+       width: 44px;
+       height: 44px;
+       top: 50%;
+       left: 50%;
+       margin-left: -22px;
+       margin-top: -22px;
+       background: url(/Images/loading.gif) no-repeat 0px 0px;
+   }
+   ```
+
+   In js, show the loading element when button is clicked, and hide it when getting the response:
+
+   ```js
+   AjaxPro.timeoutPeriod = 20000;
+   $(".btn-primary").click(function () {
+       $(".loading").show();
+       DefaultSpace.SendMsgToFrontEnd(function (data) {
+           $(".loading").hide();
+           alert(data.value);
+       });
+   });
+   ```
+

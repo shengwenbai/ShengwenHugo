@@ -1,0 +1,62 @@
+---
+layout:     post
+title:      "Render custom error page in ASP.NET MVC"
+subtitle:   ""
+date:       2017-07-18 12:00:00
+author:     "Shengwen"
+header-img: "img/404.png"
+tags:
+    - C#
+    - ASP.NET
+    - ASP.NET MVC
+---
+
+Below are 3 situations where an error page can be shown in an ASP.NET MVC Web App and what we should do to set custom error page.
+
+#### 1. Exceptions
+
+##### For instance: manually throw an exception in an action
+
+In web.config:
+
+In`<system.web>`section, add: 
+
+```xml
+<customErrors mode="On"></customErrors> 
+```
+
+to show error page for everyone, or
+
+```xml
+<customErrors mode="RemoteOnly"></customErrors>
+```
+
+to show error page for remote users only.
+
+The error page is  Views/Shared/Error.cshtml. You don't need to worry about catching errors and render this page, since job is done by a global filter `HandleErrorAttribute`. You can see it registered in FilterConfig.cs
+
+#### 2. 404 page from ASP.NET Framework
+
+##### For instance: navigate to a non-existing action
+
+Create a custom error page 404.html. Then in Web.config, `<system.web>` section, add:
+
+```xml
+<customErrors mode="On">
+	<error statusCode="404" redirect="~/404.html"></error>
+</customErrors>
+```
+
+#### 3. 404 from IIS
+
+##### For instance: access a static resource (image.gif) that does not exist
+
+In Web.config, `<system.webServer>` section , add:
+
+```xml
+<httpErrors errorMode="Custom/DetailedLocalOnly">
+    <remove statusCode="404"/>
+    <error statusCode="404" path="404.html" responseMode="File"/>
+<httpErrors> 
+```
+
