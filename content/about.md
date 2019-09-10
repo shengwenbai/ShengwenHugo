@@ -24,7 +24,7 @@ weight: 50
 
 - **.NET Technologies:** ASP.NET 4, ASP.NET MVC 4/5, ADO.NET, Entity Framework, Web API
 - **Languages:** C#, Java, C/C++, JavaScript, Perl, Shell Scripting
-- **Web:** HTML5, CSS3, Vue, Bootstrap, jQuery, XML, JASON
+- **Web:** HTML5, CSS3, Vue, Bootstrap, jQuery, XML, JSON
 - **Databases:** SQL Server, MySQL, Oracle, MS Access
 
 ### Hobbies
