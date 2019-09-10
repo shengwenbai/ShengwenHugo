@@ -71,7 +71,7 @@ waveIn.DataAvailable += (s, a) =>
 ```
 This is what our simple app looks like:
 
-![](/static/in-post/post-recorder/Recorder.JPG)
+![](/img/in-post/post-recorder/Recorder.JPG)
 
 The full program code:
 

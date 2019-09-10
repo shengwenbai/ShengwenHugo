@@ -41,15 +41,15 @@ A dirty read happens when one transaction is permitted to read data that has bee
 
 #### Lost Update
 Lost update problem happens when 2 transactions read and update the same data.
-![](/static/in-post/post-concurrent/lostupdate.png)
+![](/img/in-post/post-concurrent/lostupdate.png)
 
 #### Nonrepeatable Read
 Non repeatable read problem happens when one transaction reads the same data twice and another transaction updates that data in between the first and second read of transaction one. 
-![](/static/in-post/post-concurrent/nonrepeatableread.png)
+![](/img/in-post/post-concurrent/nonrepeatableread.png)
 
 #### Phantom Read
 Phantom read happens when one transaction executes a query twice and it gets a different number of rows in the result set each time. This happens when a second transaction inserts a new row that matches the WHERE clause of the query executed by the first transaction.
-![](/static/in-post/post-concurrent/phantomread.png)
+![](/img/in-post/post-concurrent/phantomread.png)
 
 ## Difference between repeatable read and serializable
 Repeatable read prevents only non-repeatable read. Repeatable read isolation level ensures that the data that one transaction has read, will be prevented from being updated or deleted by any other transaction, but it doe not prevent new rows from being inserted by other transactions resulting in phantom read concurrency problem. 
