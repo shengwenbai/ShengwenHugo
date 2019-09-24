@@ -3,11 +3,10 @@ title:      "A recording app with a volume level meter"
 date: 2018-05-01T01:37:56+08:00
 lastmod: 2017-05-01T01:37:56+08:00
 author:     "Adrian"
-tags: ["c#", "winform"]
+tags: ["csharp", "winform"]
 categories: ["Coding"]
 draft: false
 
-contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
 ---
 
 Prerequisites: Install NAudio, an open-source .NET library written by Mark Heath. After that, see [this tutorial](https://github.com/naudio/NAudio/blob/master/Docs/RecordWavFileWinFormsWaveIn.md), figure it out and implement the code. Our code will be based on that. 
