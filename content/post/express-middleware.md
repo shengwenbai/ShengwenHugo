@@ -1,7 +1,7 @@
 ---
 title:      "从0开始写一个简单的Express中间件"
 date: 2018-05-014T01:37:56+08:00
-lastmod: 2017-05-14T01:37:56+08:00
+lastmod: 2018-05-14T01:37:56+08:00
 author:     "Adrian"
 tags: ["node", "JavaScript"]
 categories: ["Coding"]
