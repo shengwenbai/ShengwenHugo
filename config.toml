@@ -64,7 +64,7 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
   description = "Adrian's personal blog."
 
   # paginate of archives, tags and categories             # 归档、标签、分类每页显示的文章数目，建议修改为一个较大的值
-  archivePaginate = 8
+  archivePaginate = 10
 
   # show 'xx Posts In Total' in archive page ?            # 是否在归档页显示文章的总数
   showArchiveCount = true
@@ -168,7 +168,7 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
     options = ""            # default: "{theme: 'simple'}"
 
   [params.busuanzi]         # count web traffic by busuanzi                             # 是否使用不蒜子统计站点访问量
-    enable = false
+    enable = true
     siteUV = true
     sitePV = true
     pagePV = true
